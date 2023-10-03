@@ -31,7 +31,7 @@ def split_tile_dataset(img_dir,label_dir,buildings_dir,no_buildings_dir,division
             for j in range(divisions):
                 _imgsection = _img[i*_grid_size[0]:(i+1)*_grid_size[0],j*_grid_size[0]:(j+1)*_grid_size[0]]
                 _poly = shapely.linearrings(np.multiply([[i,j],[i+1,j],[i+1,j+1],[i,j+1]],_grid_size))
-                temp = shapely.intersects(_poly,_polygons)
+                temp = shapely.intersects(_polygons,_poly)
                 if np.sum(temp) > 0:
                     image.imsave(f"{buildings_dir}/{_filename}_{i}_{j}.jpeg", _imgsection)
                 else:
